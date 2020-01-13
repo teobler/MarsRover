@@ -65,19 +65,19 @@ public class MarsRover {
 
   private void move() {
     if (this.direction.equals(Direction.N)) {
-      this.position = new Position(this.position.getPositionX(), this.position.getPositionY() + 1);
+      this.position = this.position.plusY();
     }
 
     if (this.direction.equals(Direction.E)) {
-      this.position = new Position(this.position.getPositionX() + 1, this.position.getPositionY());
+      this.position = this.position.plusX();
     }
 
     if (this.direction.equals(Direction.S)) {
-      this.position = new Position(this.position.getPositionX(), this.position.getPositionY() - 1);
+      this.position = this.position.minusY();
     }
 
     if (this.direction.equals(Direction.W)) {
-      this.position = new Position(this.position.getPositionX() - 1, this.position.getPositionY());
+      this.position = this.position.minusX();
     }
   }
 }
@@ -89,6 +89,22 @@ class Position {
   public Position(int positionX, int positionY) {
     this.positionX = positionX;
     this.positionY = positionY;
+  }
+
+  public Position plusX() {
+    return new Position(positionX + 1, positionY);
+  }
+
+  public Position plusY() {
+    return new Position(positionX, positionY + 1);
+  }
+
+  public Position minusX() {
+    return new Position(positionX - 1, positionY);
+  }
+
+  public Position minusY() {
+    return new Position(positionX, positionY - 1);
   }
 
   public int getPositionX() {
