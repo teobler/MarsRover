@@ -13,4 +13,15 @@ public class MarsRoverTest {
     assertEquals(0, marsRover.getPosition().getPositionY());
     assertEquals(Direction.N, marsRover.getDirection());
   }
+
+  @Test
+  public void should_return_0_1_N_given_0_0_N_and_move_forward() {
+    MarsRover marsRover = MarsRover.init(0, 0, Direction.N);
+
+    marsRover.execute("M");
+
+    assertEquals(0, marsRover.getPosition().getPositionX());
+    assertEquals(1, marsRover.getPosition().getPositionY());
+    assertEquals(Direction.N, marsRover.getDirection());
+  }
 }

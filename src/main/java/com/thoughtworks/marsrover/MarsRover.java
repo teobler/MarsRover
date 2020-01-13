@@ -1,5 +1,16 @@
 package com.thoughtworks.marsrover;
 
+enum Commands {
+  M
+}
+
+enum Direction {
+  N,
+  E,
+  S,
+  W
+}
+
 public class MarsRover {
   private Position position;
   private Direction direction;
@@ -20,10 +31,15 @@ public class MarsRover {
   public Direction getDirection() {
     return direction;
   }
-}
 
-enum Direction {
-  N, E, S, W
+  public void execute(String command) {
+    if ("M".equals(command)) {
+      if (this.direction.equals(Direction.N)) {
+        this.position =
+            new Position(this.position.getPositionX(), this.position.getPositionY() + 1);
+      }
+    }
+  }
 }
 
 class Position {
