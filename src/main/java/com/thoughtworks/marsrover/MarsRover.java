@@ -33,13 +33,11 @@ public class MarsRover {
               }
 
               if ('R' == command) {
-                int indexOfDirection = Arrays.asList(Direction.values()).indexOf(this.direction);
-                this.direction = Direction.values()[(indexOfDirection + 1) % 4];
+                turnRight();
               }
 
               if ('L' == command) {
-                int indexOfDirection = Arrays.asList(Direction.values()).indexOf(this.direction);
-                this.direction = Direction.values()[(indexOfDirection + 3) % 4];
+                turnLeft();
               }
             });
   }
@@ -50,6 +48,19 @@ public class MarsRover {
 
   public Direction getDirection() {
     return direction;
+  }
+
+  private void turnRight() {
+    int indexOfDirection = Arrays.asList(Direction.values()).indexOf(this.direction);
+    int lengthOfDirection = Direction.values().length;
+    this.direction = Direction.values()[(indexOfDirection + 1) % lengthOfDirection];
+  }
+
+  private void turnLeft() {
+    int indexOfDirection = Arrays.asList(Direction.values()).indexOf(this.direction);
+    int lengthOfDirection = Direction.values().length;
+    this.direction =
+        Direction.values()[(indexOfDirection + (lengthOfDirection - 1)) % lengthOfDirection];
   }
 
   private void move() {
