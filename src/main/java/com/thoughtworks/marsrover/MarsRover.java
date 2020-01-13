@@ -31,6 +31,11 @@ public class MarsRover {
       int indexOfDirection = Arrays.asList(Direction.values()).indexOf(this.direction);
       this.direction = Direction.values()[(indexOfDirection + 1) % 4];
     }
+
+    if ("L".equals(command)) {
+      int indexOfDirection = Arrays.asList(Direction.values()).indexOf(this.direction);
+      this.direction = Direction.values()[(indexOfDirection + 3) % 4];
+    }
   }
 
   public Position getPosition() {
