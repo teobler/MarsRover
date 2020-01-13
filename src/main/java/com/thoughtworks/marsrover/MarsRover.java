@@ -1,5 +1,7 @@
 package com.thoughtworks.marsrover;
 
+import java.util.Arrays;
+
 enum Direction {
   N,
   E,
@@ -23,6 +25,11 @@ public class MarsRover {
   public void execute(String command) {
     if ("M".equals(command)) {
       move();
+    }
+
+    if ("R".equals(command)) {
+      int indexOfDirection = Arrays.asList(Direction.values()).indexOf(this.direction);
+      this.direction = Direction.values()[(indexOfDirection + 1) % 4];
     }
   }
 
