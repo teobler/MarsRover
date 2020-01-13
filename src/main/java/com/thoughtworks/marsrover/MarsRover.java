@@ -38,6 +38,11 @@ public class MarsRover {
         this.position =
             new Position(this.position.getPositionX(), this.position.getPositionY() + 1);
       }
+
+      if (this.direction.equals(Direction.E)) {
+        this.position =
+            new Position(this.position.getPositionX() + 1, this.position.getPositionY());
+      }
     }
   }
 }
