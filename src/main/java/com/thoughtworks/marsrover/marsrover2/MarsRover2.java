@@ -9,17 +9,17 @@ public class MarsRover2 {
   private Position position;
   private Gearbox gearbox;
 
-  public MarsRover2(int X, int Y, Direction direction) {
+  public MarsRover2(int X, int Y, Direction direction, Gearbox gearbox) {
     this.position =
         Position.builder()
             .direction(direction)
             .coordinates(Coordinates.builder().X(X).Y(Y).build())
             .build();
-    this.gearbox = Gearbox.D;
+    this.gearbox = gearbox;
   }
 
-  public static MarsRover2 init(int positionX, int positionY, Direction direction) {
-    return new MarsRover2(positionX, positionY, direction);
+  public static MarsRover2 init(int positionX, int positionY, Direction direction, Gearbox gearbox) {
+    return new MarsRover2(positionX, positionY, direction, gearbox);
   }
 
   public void execute(String commands) {
