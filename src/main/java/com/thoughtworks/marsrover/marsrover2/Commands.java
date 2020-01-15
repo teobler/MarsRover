@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 public class Commands {
-  public static Function<Position, Position> addX =
+  static Function<Position, Position> addX =
       position ->
           Position.builder()
               .direction(position.getDirection())
@@ -17,7 +17,7 @@ public class Commands {
                       .build())
               .build();
 
-  public static Function<Position, Position> addY =
+  static Function<Position, Position> addY =
       position ->
           Position.builder()
               .direction(position.getDirection())
@@ -28,7 +28,7 @@ public class Commands {
                       .build())
               .build();
 
-  public static Function<Position, Position> subX =
+  static Function<Position, Position> subX =
       position ->
           Position.builder()
               .direction(position.getDirection())
@@ -39,7 +39,7 @@ public class Commands {
                       .build())
               .build();
 
-  public static Function<Position, Position> subY =
+  static Function<Position, Position> subY =
       position ->
           Position.builder()
               .direction(position.getDirection())
@@ -47,6 +47,28 @@ public class Commands {
                   Coordinates.builder()
                       .X(position.getCoordinates().getX())
                       .Y(position.getCoordinates().getY() - 1)
+                      .build())
+              .build();
+
+  static Function<Position, Position> turnLeft =
+      position ->
+          Position.builder()
+              .direction(Direction.valueOf((position.getDirection().getCode() + 3) % 4))
+              .coordinates(
+                  Coordinates.builder()
+                      .X(position.getCoordinates().getX())
+                      .Y(position.getCoordinates().getY())
+                      .build())
+              .build();
+
+  static Function<Position, Position> turnRight =
+      position ->
+          Position.builder()
+              .direction(Direction.valueOf((position.getDirection().getCode() + 1) % 4))
+              .coordinates(
+                  Coordinates.builder()
+                      .X(position.getCoordinates().getX())
+                      .Y(position.getCoordinates().getY())
                       .build())
               .build();
 
@@ -58,6 +80,15 @@ public class Commands {
               put(Direction.W, subX);
               put(Direction.S, subY);
               put(Direction.E, addX);
+            }
+          });
+
+  public static final Map<String, Function<Position, Position>> TURNING_COMMANDS =
+      Collections.unmodifiableMap(
+          new HashMap<String, Function<Position, Position>>() {
+            {
+              put("L", turnLeft);
+              put("R", turnRight);
             }
           });
 }

@@ -17,4 +17,11 @@ enum Direction {
   public int getCode() {
     return code;
   }
+
+  public static Direction valueOf(int code) {
+    return Arrays.stream(Direction.values())
+        .filter(direction -> direction.getCode() == code)
+        .findAny()
+        .orElse(null);
+  }
 }

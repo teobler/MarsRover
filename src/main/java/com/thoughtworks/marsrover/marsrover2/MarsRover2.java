@@ -24,5 +24,11 @@ public class MarsRover2 {
           .get(this.position.getDirection())
           .apply(this.position);
     }
+
+    if ("L".equals(command) || "R".equals(command)) {
+      this.position = Commands.TURNING_COMMANDS
+          .get(command)
+          .apply(this.position);
+    }
   }
 }
