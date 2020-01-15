@@ -17,4 +17,12 @@ public class MarsRover2 {
   public static MarsRover2 init(int positionX, int positionY, Direction direction) {
     return new MarsRover2(positionX, positionY, direction);
   }
+
+  public void execute(String command) {
+    if ("M".equals(command)) {
+      this.position = Commands.MOVING_COMMANDS
+          .get(this.position.getDirection())
+          .apply(this.position);
+    }
+  }
 }
