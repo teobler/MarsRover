@@ -7,6 +7,7 @@ import java.util.Arrays;
 @Getter
 public class MarsRover2 {
   private Position position;
+  private Gearbox gearbox;
 
   public MarsRover2(int X, int Y, Direction direction) {
     this.position =
@@ -14,6 +15,7 @@ public class MarsRover2 {
             .direction(direction)
             .coordinates(Coordinates.builder().X(X).Y(Y).build())
             .build();
+    this.gearbox = Gearbox.D;
   }
 
   public static MarsRover2 init(int positionX, int positionY, Direction direction) {
@@ -27,6 +29,10 @@ public class MarsRover2 {
               if ("M".equals(command)) {
                 this.position =
                     Commands.MOVING_COMMANDS.get(this.position.getDirection()).apply(this.position);
+              }
+
+              if ("B".equals(command)) {
+                this.gearbox = Gearbox.R;
               }
 
               if ("L".equals(command) || "R".equals(command)) {
