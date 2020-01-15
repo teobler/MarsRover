@@ -38,6 +38,10 @@ public class MarsRover2 {
                 this.gearbox = Gearbox.R;
               }
 
+              if ("H".equals(command)) {
+                this.gearbox = Gearbox.D;
+              }
+
               if ("L".equals(command) || "R".equals(command)) {
                 this.position = Commands.TURNING_COMMANDS
                     .get(command)

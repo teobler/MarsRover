@@ -158,12 +158,21 @@ public class MarsRover2Test {
   }
 
   @Test
-  public void should_change_gearbox_to_r_given_command_b() {
+  public void should_change_gearbox_to_r_given_command_b_and_init_gearbox_is_d() {
     MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D);
 
     marsRover.execute("B");
 
     assertEquals(Gearbox.R, marsRover.getGearbox());
+  }
+
+  @Test
+  public void should_change_gearbox_to_d_given_command_h_and_init_gearbox_is_r() {
+    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.R);
+
+    marsRover.execute("H");
+
+    assertEquals(Gearbox.D, marsRover.getGearbox());
   }
 
   @Test
