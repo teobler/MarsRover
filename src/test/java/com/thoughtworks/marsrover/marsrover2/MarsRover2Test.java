@@ -165,4 +165,46 @@ public class MarsRover2Test {
 
     assertEquals(Gearbox.R, marsRover.getGearbox());
   }
+
+  @Test
+  public void should_change_position_to_1_0_N_given_init_position_1_1_N_and_gearbox_is_r() {
+    MarsRover2 marsRover = MarsRover2.init(1, 1, Direction.N, Gearbox.R);
+
+    marsRover.execute("M");
+
+    assertEquals(1, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.N, marsRover.getPosition().getDirection());
+  }
+
+  @Test
+  public void should_change_position_to_0_1_N_given_init_position_1_1_N_and_gearbox_is_r() {
+    MarsRover2 marsRover = MarsRover2.init(1, 1, Direction.E, Gearbox.R);
+
+    marsRover.execute("M");
+
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(1, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.E, marsRover.getPosition().getDirection());
+  }
+  @Test
+  public void should_change_position_to_1_2_N_given_init_position_1_1_S_and_gearbox_is_r() {
+    MarsRover2 marsRover = MarsRover2.init(1, 1, Direction.S, Gearbox.R);
+
+    marsRover.execute("M");
+
+    assertEquals(1, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(2, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.S, marsRover.getPosition().getDirection());
+  }
+  @Test
+  public void should_change_position_to_2_1_N_given_init_position_1_1_W_and_gearbox_is_r() {
+    MarsRover2 marsRover = MarsRover2.init(1, 1, Direction.W, Gearbox.R);
+
+    marsRover.execute("M");
+
+    assertEquals(2, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(1, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.W, marsRover.getPosition().getDirection());
+  }
 }

@@ -28,7 +28,10 @@ public class MarsRover2 {
             command -> {
               if ("M".equals(command)) {
                 this.position =
-                    Commands.MOVING_COMMANDS.get(this.position.getDirection()).apply(this.position);
+                    Commands.MOVING_COMMANDS
+                        .get(this.gearbox)
+                        .get(this.position.getDirection())
+                        .apply(this.position);
               }
 
               if ("B".equals(command)) {
@@ -36,7 +39,9 @@ public class MarsRover2 {
               }
 
               if ("L".equals(command) || "R".equals(command)) {
-                this.position = Commands.TURNING_COMMANDS.get(command).apply(this.position);
+                this.position = Commands.TURNING_COMMANDS
+                    .get(command)
+                    .apply(this.position);
               }
             });
   }

@@ -72,7 +72,7 @@ public class Commands {
                       .build())
               .build();
 
-  public static final Map<Direction, Function<Position, Position>> MOVING_COMMANDS =
+  public static final Map<Direction, Function<Position, Position>> MOVING_FORWARD_COMMANDS =
       Collections.unmodifiableMap(
           new HashMap<Direction, Function<Position, Position>>() {
             {
@@ -80,6 +80,26 @@ public class Commands {
               put(Direction.W, subX);
               put(Direction.S, subY);
               put(Direction.E, addX);
+            }
+          });
+
+  public static final Map<Direction, Function<Position, Position>> MOVING_BACK_COMMANDS =
+      Collections.unmodifiableMap(
+          new HashMap<Direction, Function<Position, Position>>() {
+            {
+              put(Direction.N, subY);
+              put(Direction.W, addX);
+              put(Direction.S, addY);
+              put(Direction.E, subX);
+            }
+          });
+
+  public static final Map<Gearbox, Map<Direction, Function<Position, Position>>> MOVING_COMMANDS =
+      Collections.unmodifiableMap(
+          new HashMap<Gearbox, Map<Direction, Function<Position, Position>>>() {
+            {
+              put(Gearbox.D, MOVING_FORWARD_COMMANDS);
+              put(Gearbox.R, MOVING_BACK_COMMANDS);
             }
           });
 
