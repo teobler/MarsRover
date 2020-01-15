@@ -34,12 +34,8 @@ public class MarsRover2 {
                         .apply(this.position);
               }
 
-              if ("B".equals(command)) {
-                this.gearbox = Gearbox.R;
-              }
-
-              if ("H".equals(command)) {
-                this.gearbox = Gearbox.D;
+              if ("B".equals(command) || "H".equals(command)) {
+                this.gearbox = Commands.CHANGING_GEARBOX_COMMANDS.get(command);
               }
 
               if ("L".equals(command) || "R".equals(command)) {

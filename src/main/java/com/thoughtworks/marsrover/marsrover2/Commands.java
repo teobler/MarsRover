@@ -111,4 +111,13 @@ public class Commands {
               put("R", turnRight);
             }
           });
+
+  public static final Map<String, Gearbox> CHANGING_GEARBOX_COMMANDS =
+      Collections.unmodifiableMap(
+          new HashMap<String, Gearbox>() {
+            {
+              put("H", Gearbox.D);
+              put("B", Gearbox.R);
+            }
+          });
 }
