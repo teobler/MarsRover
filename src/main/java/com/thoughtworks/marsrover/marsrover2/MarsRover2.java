@@ -34,11 +34,11 @@ public class MarsRover2 {
                         .apply(this.position);
               }
 
-              if ("B".equals(command) || "H".equals(command)) {
+              if (Commands.CHANGING_GEARBOX_COMMANDS.containsKey(command)) {
                 this.gearbox = Commands.CHANGING_GEARBOX_COMMANDS.get(command);
               }
 
-              if ("L".equals(command) || "R".equals(command)) {
+              if (Commands.TURNING_COMMANDS.containsKey(command)) {
                 this.position = Commands.TURNING_COMMANDS
                     .get(command)
                     .apply(this.position);
