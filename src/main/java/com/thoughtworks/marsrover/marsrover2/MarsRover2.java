@@ -38,8 +38,9 @@ public class MarsRover2 {
                 this.gearbox = Commands.CHANGING_GEARBOX_COMMANDS.get(command);
               }
 
-              if (Commands.TURNING_COMMANDS.containsKey(command)) {
+              if ("L".equals(command) || "R".equals(command)) {
                 this.position = Commands.TURNING_COMMANDS
+                    .get(this.gearbox)
                     .get(command)
                     .apply(this.position);
               }

@@ -103,12 +103,30 @@ public class Commands {
             }
           });
 
-  public static final Map<String, Function<Position, Position>> TURNING_COMMANDS =
+  public static final Map<String, Function<Position, Position>> FORWARD_TURNING_COMMANDS =
       Collections.unmodifiableMap(
           new HashMap<String, Function<Position, Position>>() {
             {
               put("L", turnLeft);
               put("R", turnRight);
+            }
+          });
+
+  public static final Map<String, Function<Position, Position>> BACK_TURNING_COMMANDS =
+      Collections.unmodifiableMap(
+          new HashMap<String, Function<Position, Position>>() {
+            {
+              put("L", turnRight);
+              put("R", turnLeft);
+            }
+          });
+
+  public static final Map<Gearbox, Map<String, Function<Position, Position>>> TURNING_COMMANDS =
+      Collections.unmodifiableMap(
+          new HashMap<Gearbox, Map<String, Function<Position, Position>>>() {
+            {
+              put(Gearbox.D, FORWARD_TURNING_COMMANDS);
+              put(Gearbox.R, BACK_TURNING_COMMANDS);
             }
           });
 
