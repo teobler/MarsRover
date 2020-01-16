@@ -317,4 +317,16 @@ public class MarsRover2Test {
     assertEquals(-1, marsRover.getPosition().getCoordinates().getY());
     assertEquals(Direction.E, marsRover.getPosition().getDirection());
   }
+
+  @Test
+  public void should_return_0_0_E_given_0_0_N_and_a_batch_of_commands_with_changing_gearbox() {
+    MarsRover2 marsRover = MarsRover2.init(1, 1, Direction.N, Gearbox.D);
+
+    marsRover.execute("BLMMHRMLMB");
+
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.E, marsRover.getPosition().getDirection());
+    assertEquals(Gearbox.R, marsRover.getGearbox());
+  }
 }
