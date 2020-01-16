@@ -7,8 +7,10 @@ public class MarsRover2 {
   private Position position;
   private Gearbox gearbox;
   private Radar radar;
+  private MarsMap marsMap;
 
-  public MarsRover2(int X, int Y, Direction direction, Gearbox gearbox, Radar radar) {
+  public MarsRover2(
+      int X, int Y, Direction direction, Gearbox gearbox, Radar radar, MarsMap marsMap) {
     this.position =
         Position.builder()
             .direction(direction)
@@ -16,10 +18,17 @@ public class MarsRover2 {
             .build();
     this.gearbox = gearbox;
     this.radar = radar;
+    this.marsMap = marsMap;
   }
 
-  public static MarsRover2 init(int positionX, int positionY, Direction direction, Gearbox gearbox, Radar radar) {
-    return new MarsRover2(positionX, positionY, direction, gearbox, radar);
+  public static MarsRover2 init(
+      int positionX,
+      int positionY,
+      Direction direction,
+      Gearbox gearbox,
+      Radar radar,
+      MarsMap marsMap) {
+    return new MarsRover2(positionX, positionY, direction, gearbox, radar, marsMap);
   }
 
   public MarsRover2 execute(String commands) {
@@ -36,7 +45,8 @@ public class MarsRover2 {
                 .apply(this.position);
 
         if (radar.scanIfInPit()) {
-          newMarsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D, new Radar());
+          this.marsMap.tagPit(this.position.getCoordinates());
+          newMarsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D, new Radar(), this.marsMap);
           break;
         }
       }
