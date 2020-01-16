@@ -18,4 +18,20 @@ public class SystemStatus {
   public void changeMovingStatus() {
     this.systemStatus.replace("M", !this.systemStatus.get("M"));
   }
+
+  public void changeTurningLeftStatus() {
+    this.systemStatus.replace("L", !this.systemStatus.get("M"));
+  }
+
+  public void changeTurningRightStatus() {
+    this.systemStatus.replace("R", !this.systemStatus.get("M"));
+  }
+
+  public void changeBackingStatus() {
+    this.systemStatus.replace("B", !this.systemStatus.get("M"));
+  }
+
+  public void changeAheadStatus() {
+    this.systemStatus.replace("H", !this.systemStatus.get("M"));
+  }
 }

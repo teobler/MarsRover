@@ -403,4 +403,61 @@ public class MarsRover2Test {
     assertEquals(0, marsRover.getPosition().getCoordinates().getY());
     assertEquals(Direction.N, marsRover.getPosition().getDirection());
   }
+
+  @Test
+  public void should_skip_l_command_if_mars_rovers_moving_status_is_false() {
+    Radar radar = mock(Radar.class);
+    when(radar.scanIfInPit()).thenReturn(false);
+    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D, radar, new MarsMap());
+    marsRover.getSystemStatus().changeTurningLeftStatus();
+
+    marsRover.execute("L");
+
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.N, marsRover.getPosition().getDirection());
+  }
+
+  @Test
+  public void should_skip_r_command_if_mars_rovers_moving_status_is_false() {
+    Radar radar = mock(Radar.class);
+    when(radar.scanIfInPit()).thenReturn(false);
+    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D, radar, new MarsMap());
+    marsRover.getSystemStatus().changeTurningRightStatus();
+
+    marsRover.execute("R");
+
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.N, marsRover.getPosition().getDirection());
+  }
+
+  @Test
+  public void should_skip_b_command_if_mars_rovers_moving_status_is_false() {
+    Radar radar = mock(Radar.class);
+    when(radar.scanIfInPit()).thenReturn(false);
+    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D, radar, new MarsMap());
+    marsRover.getSystemStatus().changeBackingStatus();
+
+    marsRover.execute("B");
+
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.N, marsRover.getPosition().getDirection());
+  }
+
+  @Test
+  public void should_skip_h_command_if_mars_rovers_moving_status_is_false() {
+    Radar radar = mock(Radar.class);
+    when(radar.scanIfInPit()).thenReturn(false);
+    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D, radar, new MarsMap());
+    marsRover.getSystemStatus().changeAheadStatus();
+
+    marsRover.execute("H");
+
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.N, marsRover.getPosition().getDirection());
+  }
+
 }
