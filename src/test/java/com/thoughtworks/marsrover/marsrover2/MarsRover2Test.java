@@ -371,4 +371,22 @@ public class MarsRover2Test {
     assertEquals(0, newMarsRover.getMarsMap().getTaggedPitCoordinates().get(0).getX());
     assertEquals(1, newMarsRover.getMarsMap().getTaggedPitCoordinates().get(0).getY());
   }
+
+  @Test
+  public void should_skip_command_if_next_step_is_a_pit_tagged_on_the_map() {
+    Radar oldRadar = mock(Radar.class);
+    when(oldRadar.scanIfInPit()).thenReturn(true);
+    Radar newRadar = mock(Radar.class);
+    when(newRadar.scanIfInPit()).thenReturn(false);
+    MarsMap marsMap = new MarsMap();
+    MarsRover2 oldMarsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D, oldRadar, marsMap);
+    oldMarsRover.execute("M");
+    MarsRover2 newMarsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D, newRadar, marsMap);
+
+    newMarsRover.execute("MLMRMRM");
+
+    assertEquals(0, newMarsRover.getPosition().getCoordinates().getX());
+    assertEquals(2, newMarsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.E, newMarsRover.getPosition().getDirection());
+  }
 }

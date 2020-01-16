@@ -38,11 +38,14 @@ public class MarsRover2 {
       String command = commands.substring(i, i + 1);
 
       if ("M".equals(command)) {
-        this.position =
-            Commands.MOVING_COMMANDS
-                .get(this.gearbox)
-                .get(this.position.getDirection())
-                .apply(this.position);
+        Position newPosition = Commands.MOVING_COMMANDS
+            .get(this.gearbox)
+            .get(this.position.getDirection())
+            .apply(this.position);
+
+        if (!this.marsMap.getTaggedPitCoordinates().contains(newPosition.getCoordinates())) {
+          this.position = newPosition;
+        }
 
         if (radar.scanIfInPit()) {
           this.marsMap.tagPit(this.position.getCoordinates());
