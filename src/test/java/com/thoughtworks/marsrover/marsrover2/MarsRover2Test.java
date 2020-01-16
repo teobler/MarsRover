@@ -37,23 +37,23 @@ public class MarsRover2Test {
   }
 
   @Test
-  public void should_return_0_minus1_S_given_0_0_S_and_move_forward() {
-    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.S, Gearbox.D);
+  public void should_return_0_0_S_given_0_1_S_and_move_forward() {
+    MarsRover2 marsRover = MarsRover2.init(0, 1, Direction.S, Gearbox.D);
 
     marsRover.execute("M");
 
     assertEquals(0, marsRover.getPosition().getCoordinates().getX());
-    assertEquals(-1, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getY());
     assertEquals(Direction.S, marsRover.getPosition().getDirection());
   }
 
   @Test
-  public void should_return_minus1_0_W_given_0_0_W_and_move_forward() {
-    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.W, Gearbox.D);
+  public void should_return_0_0_W_given_1_0_W_and_move_forward() {
+    MarsRover2 marsRover = MarsRover2.init(1, 0, Direction.W, Gearbox.D);
 
     marsRover.execute("M");
 
-    assertEquals(-1, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
     assertEquals(0, marsRover.getPosition().getCoordinates().getY());
     assertEquals(Direction.W, marsRover.getPosition().getDirection());
   }
@@ -147,12 +147,12 @@ public class MarsRover2Test {
   }
 
   @Test
-  public void should_return_1_2_E_given_0_0_N_and_a_batch_of_commands() {
-    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D);
+  public void should_return_0_1_E_given_3_0_N_and_a_batch_of_commands() {
+    MarsRover2 marsRover = MarsRover2.init(3, 0, Direction.N, Gearbox.D);
 
     marsRover.execute("LMMRMLM");
 
-    assertEquals(-3, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
     assertEquals(1, marsRover.getPosition().getCoordinates().getY());
     assertEquals(Direction.W, marsRover.getPosition().getDirection());
   }
@@ -308,13 +308,13 @@ public class MarsRover2Test {
   }
 
   @Test
-  public void should_return_1_2_E_given_0_0_N_and_a_batch_of_commands_with_gearbox_is_r() {
-    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.R);
+  public void should_return_0_0_E_given_3_1_N_and_a_batch_of_commands_with_gearbox_is_r() {
+    MarsRover2 marsRover = MarsRover2.init(3, 1, Direction.N, Gearbox.R);
 
     marsRover.execute("LMMRMLM");
 
-    assertEquals(-3, marsRover.getPosition().getCoordinates().getX());
-    assertEquals(-1, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getY());
     assertEquals(Direction.E, marsRover.getPosition().getDirection());
   }
 
