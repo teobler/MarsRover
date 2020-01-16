@@ -8,6 +8,7 @@ public class MarsRover2 {
   private Gearbox gearbox;
   private Radar radar;
   private MarsMap marsMap;
+  private SystemStatus systemStatus = new SystemStatus();
 
   public MarsRover2(
       int X, int Y, Direction direction, Gearbox gearbox, Radar radar, MarsMap marsMap) {
@@ -37,6 +38,8 @@ public class MarsRover2 {
     for (int i = 0; i < commands.length(); i++) {
       String command = commands.substring(i, i + 1);
 
+      if (!this.getSystemStatus().getSystemStatus().get(command)) break;
+
       if ("M".equals(command)) {
         moveToNextStep();
 
@@ -52,10 +55,8 @@ public class MarsRover2 {
       }
 
       if ("L".equals(command) || "R".equals(command)) {
-        this.position = Commands.TURNING_COMMANDS
-            .get(this.gearbox)
-            .get(command)
-            .apply(this.position);
+        this.position =
+            Commands.TURNING_COMMANDS.get(this.gearbox).get(command).apply(this.position);
       }
     }
 

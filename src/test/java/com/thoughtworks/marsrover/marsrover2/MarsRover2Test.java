@@ -389,4 +389,18 @@ public class MarsRover2Test {
     assertEquals(2, newMarsRover.getPosition().getCoordinates().getY());
     assertEquals(Direction.E, newMarsRover.getPosition().getDirection());
   }
+
+  @Test
+  public void should_skip_m_command_if_mars_rovers_moving_status_is_false() {
+    Radar radar = mock(Radar.class);
+    when(radar.scanIfInPit()).thenReturn(false);
+    MarsRover2 marsRover = MarsRover2.init(0, 0, Direction.N, Gearbox.D, radar, new MarsMap());
+    marsRover.getSystemStatus().changeMovingStatus();
+
+    marsRover.execute("M");
+
+    assertEquals(0, marsRover.getPosition().getCoordinates().getX());
+    assertEquals(0, marsRover.getPosition().getCoordinates().getY());
+    assertEquals(Direction.N, marsRover.getPosition().getDirection());
+  }
 }
